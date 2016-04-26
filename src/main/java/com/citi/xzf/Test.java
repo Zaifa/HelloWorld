@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping(value = "/test")
 public class Test {
 	@Autowired
 	private Student student;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String showTeacherStudent(@RequestParam(value="name", required=false, defaultValue="xizaifa") String name, ModelMap model) {
 		// TODO Auto-generated constructor stub
 		System.out.println("in method!");
@@ -23,6 +22,12 @@ public class Test {
 		System.out.println(student.getName());
 		model.addAttribute("message", "Spring MVC test!! " + name);
 	    return "hello";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginPage(ModelMap model){
+		model.addAttribute("isInitial", true);
+		return "login";
 	}
 
 }
